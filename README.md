@@ -8,6 +8,7 @@ The project is written in PHP, we use [Slim Framework](http://www.slimframework.
 
 ## Setting up your own
 If you would like to contribute to the development, you are probably interested in how-to run your own copy:
+
 1. Deploy the source code to Azure or any other provider of your choice and run `composer install` (if you are using Azure Web Apps, you can use the [Composer extension](https://github.com/SyntaxC4-MSFT/ComposerExtension) to automatically handle Composer automatically when deploying from Git)
 2. [Create a multi-tenant application in your Azure Active Directory](https://azure.microsoft.com/en-us/documentation/articles/resource-group-create-service-principal-portal/) and add the following permissions:
   * *Delegated Permissions*
