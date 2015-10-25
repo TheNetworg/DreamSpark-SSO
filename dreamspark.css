@@ -1,0 +1,124 @@
+html, body {
+	color: #333333;
+	font-family: 'Segoe UI Regular WestEuropean', 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	font-size: inherit;
+	padding: 0;
+	margin: 0;
+}
+.Container {
+	margin: 0;
+	padding: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+}
+.contentCenter {
+	max-width: 800px;
+	padding: 0 20px 0;
+	margin: 0 auto;
+	box-sizing: border-box;
+}
+.Header {
+	padding-bottom: 10px;
+}
+.DS-bg {
+	background-color: #7FBA00;
+}
+.OneNote-bg {
+	background-color: #80397B;
+}
+.OneNote {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color: white;
+	text-align: center;
+}
+.OneNote a:link {
+	color: white;
+}
+.ms-Button .ms-Button-icon {
+	display: inline-block;
+	font-size: 42px;
+	margin-right: 5px;
+}
+.ms-Button:hover .ms-Button-icon {
+	color: #FFFFFF !important;
+}
+.ms-Button:active .ms-Button-icon {
+	color: #FFFFFF !important;
+}
+.ms-Button:focus .ms-Button-icon {
+	color: #FFFFFF !important;
+}
+.ms-Button .ms-Button-label {
+	display: inline-block !important;
+	font-size: 42px;
+}
+.ms-Button:hover .ms-Button-label {
+	color: #FFFFFF !important;
+}
+.ms-Button:active .ms-Button-label {
+	color: #FFFFFF !important;
+}
+.ms-Button:focus .ms-Button-label {
+	color: #FFFFFF !important;
+}
+.ms-Button .ms-Button-description {
+	margin-left: 50px;
+}
+.ms-Button:hover .ms-Button-description {
+	color: #FFFFFF !important;
+}
+.ms-Button:active .ms-Button-description {
+	color: #FFFFFF !important;
+}
+.ms-Button:focus .ms-Button-description {
+	color: #FFFFFF !important;
+}
+.ms-Button {
+	max-width: 700px !important;
+	text-align: left;
+}
+.ms-Button:hover {
+	background-color: #7FBA00 !important;
+	border-color: #7FBA00 !important;
+}
+.ms-Button:active {
+	background-color: #7FBA00 !important;
+	border-color: #7FBA00 !important;
+}
+.ms-Button:focus {
+	background-color: #7FBA00 !important;
+	border-color: #7FBA00 !important;
+}
+.footer {
+	text-align: center;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	color: white;
+}
+.footer a:link {
+	color: white;
+}
+.screenshots {
+	margin-bottom: 25px;
+}
+.screenshots h2 {
+	margin-bottom: 10px;
+}
+.screenshots img {
+	width: 100%;
+	border: 1px solid #333333;
+}
+.description {
+	margin-top: 25px;
+	text-align: justify;
+}
+.installButton {
+	margin-top: 25px;
+	text-align: center;
+}
