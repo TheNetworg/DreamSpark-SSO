@@ -1,0 +1,32 @@
+html,
+body {
+  color: #333333;
+  font-family: 'Segoe UI Regular WestEuropean', 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  padding: 0;
+  margin: 0;
+}
+@media (min-width: 640px) {
+  .Content {
+    max-width: 960px;
+	position: relative;
+	margin: 0 auto;
+  }
+}
+.notice {
+	border-width: 4px;
+	border-left-style: solid;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	padding: 10px 0px 10px 10px;
+}
+.notice.success {
+	border-color: #548235;
+}
+.notice.error {
+	border-color: #dc0606;
+}
+.notice.warning {
+	border-color: #cf6227;
+}
