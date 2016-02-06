@@ -44,7 +44,7 @@ var DreamSparkSSO = {
 				$(".group-selection").select2({
 					multiple: true,
 					ajax: {
-						url: "/api/groups",
+						url: "/ajax/groups",
 						dataType: 'json',
 						delay: 500,
 						data: function(params) {

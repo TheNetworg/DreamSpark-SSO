@@ -93,7 +93,7 @@ $app->group("/settings", ['Auth', 'Authenticate'], ['API', "authorizeOrganizatio
 		$app->redirect($app->request->getResourceUri());
 	});
 });
-$app->group("/api", ['Auth', 'Authenticate'], ['API', "authorizeOrganization"], ['API', "authorizeAdministrator"], 'JSON', function() use ($app) {
+$app->group("/ajax", ['Auth', 'Authenticate'], ['API', "authorizeOrganization"], ['API', "authorizeAdministrator"], 'JSON', function() use ($app) {
 	$app->get('/groups', function() use($app) {
 		$query = isset($_GET["q"]) ? $_GET["q"] : "";
 		$results = API::searchGroupByName($query);
