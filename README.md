@@ -1,7 +1,7 @@
 # DreamSpark SSO
 
 ## Introduction
-This is the original source code which poweres [DreamSpark SSO](https://go.thenetw.org/dreamsparksso) service. The main purpose of the project being opensourced is to showcase how easy it is to develop applications upon Office 365 and Azure.
+This is the original source code which poweres [DreamSpark SSO](https://go.thenetw.org/dreamsparksso) service. The main purpose of the project being opensourced is to showcase how easy it is to develop applications upon Office 365 and Azure. In production environment, you should be using the [hosted service](https://thenetworg.github.io/DreamSpark-SSO) instead of running your own.
 
 ## Technology Used
 The project is written in PHP, we use [Slim Framework](http://www.slimframework.com) as our base. The whole project is hosted on [Microsoft Azure](https://www.azure.com). Single Sign On and connection to Graph API is provided by [oauth2-azure](https://github.com/thenetworg/oauth2-azure) module. We make use of [Azure Table Storage](https://azure.microsoft.com/en-us/services/storage/) (through [Azure PHP SDK](https://github.com/Azure/azure-sdk-for-php)), for user interface we use [Office UI Fabric](https://github.com/OfficeDev/Office-UI-Fabric) and [App Chrome](https://msdn.microsoft.com/en-us/office/office365/howto/javascript-controls). [Application Insights](https://azure.microsoft.com/en-us/services/application-insights/) are used for application monitoring. We also make use of [CloudFlare](https://www.cloudflare) which provides us with caching, SSL and many more.
