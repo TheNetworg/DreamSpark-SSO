@@ -183,7 +183,8 @@ $app->get("/install", ['Auth', 'Authenticate'], ['API', 'authorizeAdministrator'
 			$app->redirect("/settings");
 		}
 		else {
-			$redirectUrl = $app->OAuth2->provider->getAuthorizationUrl(['resource' => "https://graph.windows.net/", 'admin_consent' => 'true']);
+			$redirectUrl = $app->OAuth2->provider->getAuthorizationUrl(['resource' => "https://graph.windows.net/", 'prompt' => 'admin_consent']);
+			$_SESSION['OAuth2.state'] = $app->OAuth2->provider->getState();
 			$app->redirect($redirectUrl);
 		}
 	}
