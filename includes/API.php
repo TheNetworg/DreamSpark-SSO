@@ -199,6 +199,11 @@ class API {
 				unset($assignments[$key]);
 				unset($adminsToAssign[$existingAdminAssignment]);
 			}
+			else if($assignment['principalType'] == "User" && $existingUserAssignment !== FALSE) {
+				echo "user ".$assignment['principalId']." is already assigned\n";
+				unset($assignments[$key]);
+				unset($usersToAssign[$existingUserAssignment]);
+			}
 		}
 		
 		foreach($adminsToAssign as $user) {
