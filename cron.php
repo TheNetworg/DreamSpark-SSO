@@ -24,8 +24,9 @@ foreach($entities as $entity) {
 	$app->OAuth2->token = $app->OAuth2->provider->getAccessToken('client_credentials', ['resource' => "https://graph.windows.net/"]);
 	
 	$accessGroups = json_decode($entity->getPropertyValue("accessGroups"));
+    $everyone = $entity->getPropertyValue("access") == "everyone" ? true : false;
 	$groups = $accessGroups->students + $accessGroups->faculty + $accessGroups->staff;
 	
-	API::assignToApplication($tenantDomain, false, $groups);
+	API::assignToApplication($tenantDomain, $everyone, $groups);
 }
 ?>
