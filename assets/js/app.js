@@ -30,7 +30,7 @@ var DreamSparkSSO = {
 					console.log("onSignOut");
 				},
 				"customizedItems": {
-					"Office 365": "http://portal.ofice.com",
+					"Office 365": "http://portal.office.com",
 					//"EduLog.in": "http://edulog.in",
 				}
 			});
