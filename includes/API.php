@@ -148,6 +148,33 @@ class API {
 		$group = $app->OAuth2->provider->get("myOrganization/groups/".rawurldecode($groupId), $app->OAuth2->token);
 		return $group;
 	}
+	public static function getAllObjectIds($tenant, $ref, &$accessToken) {
+		global $app;
+		
+		$users = [];
+		
+		if (filter_var($ref, FILTER_VALIDATE_URL) === FALSE) {
+            $ref = $tenant."/".$ref;
+        }
+		
+		$response = "";
+		do {
+        	$response = $app->OAuth2->provider->get($ref, $accessToken);
+            foreach ($response as $value) {
+                $users[] = $value['objectId'];
+            }
+			if (isset($response['odata.nextLink'])) {
+                $ref = $response['odata.nextLink'];
+            } elseif (isset($response['@odata.nextLink'])) {
+                $ref = $response['@odata.nextLink'];
+            }
+			else {
+				$ref = null;
+			}
+		} while ($ref != null);
+		
+		return $users;
+	}
 	public static function assignToApplication($tenant, $everyone = false, $groupsToAssign = []) {
 		global $app;
 		
@@ -176,11 +203,11 @@ class API {
 		
 		$usersToAssign = [];
 		if($everyone) {
-			$users = $app->OAuth2->provider->getObjects($tenant, "/users", $app->OAuth2->token);
+			$users = self::getAllObjectIds($tenant, '/users', $app->OAuth2->token);
 			foreach($users as $key=>$user) {
-				$isUserAdmin = array_search($user['objectId'], $adminsToAssign);
+				$isUserAdmin = array_search($user, $adminsToAssign);
 				if($isUserAdmin === FALSE) {
-					$usersToAssign[] = $user['objectId'];
+					$usersToAssign[] = $user;
 				}
 			}
 		}
