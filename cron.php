@@ -1,7 +1,5 @@
 <?php
-//if(PHP_SAPI !== 'cli') die('Server side only.');
-
-ini_set('display_errors', 1);
+if(PHP_SAPI !== 'cli') die('Server side only.');
 
 require_once '../vendor/autoload.php';
 require_once "includes/API.php";
@@ -27,6 +25,10 @@ foreach($entities as $entity) {
     $everyone = $entity->getPropertyValue("access") == "everyone" ? true : false;
 	$groups = $accessGroups->students + $accessGroups->faculty + $accessGroups->staff;
 	
-	API::assignToApplication($tenantDomain, $everyone, $groups);
+	try {
+		API::assignToApplication($tenantDomain, $everyone, $groups);
+	} catch(\Exception $e) {
+		echo "--FAIL-- ".$e->getMessage()."\n\n";
+	}
 }
 ?>
