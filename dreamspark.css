@@ -40,6 +40,9 @@ h1, h2, h3, h4, h5, h6 {
 .OneNote a:link {
 	color: white;
 }
+.OneNote a:visited {
+	color: white;
+}
 .ms-Button .ms-Button-icon {
 	display: inline-block;
 	font-size: 42px;
