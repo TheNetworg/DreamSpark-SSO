@@ -90,6 +90,18 @@ class API {
 		}
 		return $memberOf;
 	}
+	public static function getMemberGroups() {
+		global $app;
+		
+		$memberGroups = self::getCache("GRAPH:memberGroups");
+		if(!$memberGroups) {
+			$memberGroups = $app->OAuth2->provider->post("me/getMemberGroups", [
+				"securityEnabledOnly" => true,
+			], $app->OAuth2->token);
+			if($memberGroups) self::setCache("GRAPH:memberGroups", $memberGroups, 600);
+		}
+		return $memberGroups;
+	}
 	public static function tenantDetails() {
 		global $app;
 		
@@ -122,7 +134,8 @@ class API {
 	public static function searchGroupByName($groupName) {
 		global $app;
 		
-		$filter = strlen($groupName) ? '$filter=startswith(displayName,\''.rawurldecode($groupName).'\')' : '';
+		$filter = '$filter=(securityEnabled eq true)';
+		$filter .= strlen($groupName) ? ' and startswith(displayName,\''.rawurldecode($groupName).'\')' : '';
 		$result = $app->OAuth2->provider->get("myOrganization/groups?".$filter.'&$top=5', $app->OAuth2->token);
 		return $result;
 	}
@@ -132,12 +145,12 @@ class API {
 		$access = $settings->getPropertyValue("access");
 		if($access == "everyone") return "students";
 		else {
-			$memberOf = self::memberOf();
+			$memberGroups = self::getMemberGroups();
 			$accessGroups = json_decode($settings->getPropertyValue("accessGroups"));
-			foreach($memberOf as $group) {
-				if(in_array($group['objectId'], $accessGroups->students)) return "students";
-				else if(in_array($group['objectId'], $accessGroups->faculty)) return "faculty";
-				else if(in_array($group['objectId'], $accessGroups->staff)) return "staff";
+			foreach($memberGroups as $group) {
+				if(in_array($group, $accessGroups->students)) return "students";
+				else if(in_array($group, $accessGroups->faculty)) return "faculty";
+				else if(in_array($group, $accessGroups->staff)) return "staff";
 			}
 			return false;
 		}
