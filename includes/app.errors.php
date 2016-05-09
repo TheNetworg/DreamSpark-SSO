@@ -27,4 +27,8 @@ $app->error(function($e) use ($app) {
 		<?php
 		baseHTML::footer();
 	}
+	
+	if(method_exists("\Slim\ApplicationInsights", "exception")) {
+		\Slim\ApplicationInsights::exception($e);
+	}
 });
