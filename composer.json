@@ -9,7 +9,9 @@
         "pear-pear.php.net/mail_mimedecode" : "*",
         "microsoft/windowsazure": "*",
         "microsoft/application-insights": "dev-master",
-        "thenetworg/oauth2-azure": "~1.0"
+        "thenetworg/oauth2-azure": "dev-master",
+        "slim/views": "^0.1.3",
+        "twig/twig": "^1.24"
     },
     "repositories": [{
         "type": "pear",

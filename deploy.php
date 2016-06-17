@@ -26,7 +26,7 @@ $js = $factory->createAsset([
 	'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js',
 	'https://controls.office.com/appChrome/1.0/Office.Controls.AppChrome.js',
 	'https://controls.office.com/people/1.0/Office.Controls.People.js',
-	'https://raw.githubusercontent.com/OfficeDev/Office-UI-Fabric/release/1.1.0/dist/js/jquery.fabric.min.js',
+	// 'https://raw.githubusercontent.com/OfficeDev/Office-UI-Fabric/release/1.1.0/dist/js/jquery.fabric.min.js',
 	'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js',
 	'@base_scripts'
 ], [], ["output" => "app.js"]);
@@ -34,8 +34,8 @@ $js = $factory->createAsset([
 $css = $factory->createAsset([
 	'https://controls.office.com/appChrome/1.0/Office.Controls.AppChrome.min.css',
 	'https://controls.office.com/people/1.0/Office.Controls.People.min.css',
-	'https://raw.githubusercontent.com/OfficeDev/Office-UI-Fabric/release/1.1.0/dist/css/fabric.min.css',
-	'https://raw.githubusercontent.com/OfficeDev/Office-UI-Fabric/release/1.1.0/dist/css/fabric.components.min.css',
+	'https://appsforoffice.microsoft.com/fabric/1.1.0/fabric.min.css',
+	'https://appsforoffice.microsoft.com/fabric/1.1.0/fabric.components.min.css',
 	'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css',
 	'@base_styles'
 ], [], ["output" => "app.css"]);

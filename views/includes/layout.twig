@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>DreamSpark SSO</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/png" />
+    {% if cache %}
+        <link rel="stylesheet" type="text/css" href="/assets/cache/{{ cache.css }}">
+        <script type="text/javascript" src="/assets/cache/{{ cache.js }}"></script>
+    {% else %}
+        <link rel="stylesheet" type="text/css" href="https://controls.office.com/appChrome/1.0/Office.Controls.AppChrome.min.css">
+        <link rel="stylesheet" type="text/css" href="https://controls.office.com/people/1.0/Office.Controls.People.min.css">
+        <link rel="stylesheet" type="text/css" href="https://appsforoffice.microsoft.com/fabric/1.1.0/fabric.min.css">
+        <link rel="stylesheet" type="text/css" href="https://appsforoffice.microsoft.com/fabric/1.1.0/fabric.components.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
+        
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script type="text/javascript" src="https://controls.office.com/appChrome/1.0/Office.Controls.AppChrome.js"></script>
+        <script type="text/javascript" src="https://controls.office.com/people/1.0/Office.Controls.People.js"></script>
+        <script type="text/javascript" src="/assets/js/jquery.fabric.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+        
+        {% set timestamp = date().timestamp %}
+        <link rel="stylesheet" type="text/css" href="/assets/css/app.css?t={{ time }}">
+        <script type="text/javascript" src="/assets/js/app.js?t={{ timestamp }}"></script>
+    {% endif %}
+</head>
+<body>
+    <div id="header"></div>
+    {% include "includes/navbar.twig" %}
+    <main class="Container">
+        {% include "includes/flash.twig" %}
+        {% block content %}
+        {% endblock %}
+    </main>
+    <script>
+        $(document).ready(function() {
+            {% if user %}
+                DreamSparkSSO.User = {
+                    accountName: "{{ user.upn }}",
+                    displayName: "{{ user.name }}",
+                    imgSrc: "{{ user.thumbnailPhoto }}"
+                };
+            {% endif %}
+            DreamSparkSSO.AppLauncher.Load("#header");
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<div class="Content">
+    {% for label, message in flash %}
+        {% if label == "info" or label == "error" or label == "warning" or label == "success" %}
+            <div class="notice {{ label }}">
+                {{ message | raw }}
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>

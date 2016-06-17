@@ -16,6 +16,11 @@ class Auth {
 				$redirectToOriginalUrl = "/";
 				if($app->view()->getData('flash')["originalPath"]) $redirectToOriginalUrl = $app->view()->getData('flash')["originalPath"];
 				
+				$user = $app->OAuth2->provider->getResourceOwner($app->OAuth2->token);
+				$app->view()->appendData([
+					'user' => $user->toArray()
+				]);
+
 				if(isset($_GET["admin_consent"])) {
 					$redirectToOriginalUrl .= "?admin_consent=true";
 				}
@@ -40,6 +45,11 @@ class Auth {
     			]);
 				$_SESSION['OAuth2.token'] = $app->OAuth2->token;
 			}
+
+			$user = $app->OAuth2->provider->getResourceOwner($app->OAuth2->token);
+			$app->view()->appendData([
+				'user' => $user->toArray()
+			]);
 		}
 	}
 }

@@ -1,0 +1,21 @@
+{% extends "includes/layout.twig" %}
+
+{% block content %}
+    <div class="Content">
+        <form class="Form" method="post">
+            <div class="ms-TextField is-required">
+                <label class="ms-Label">Organization Account Number</label>
+                <input class="ms-TextField-field" type="text" name="account" value="{{ webstore.account }}"/>
+                <span class="ms-TextField-description">The ID of your DreamSpark Premium subscription.</span>
+            </div>
+            <div class="ms-TextField is-required">
+                <label class="ms-Label">Key</label>
+                <input class="ms-TextField-field" type="text" name="key" value="{{ webstore.key }}"/>
+                <span class="ms-TextField-description">The key you generated during the configuration of SSO process.</span>
+            </div>
+            <div class="SubmitButton">
+                <button class="ms-Button ms-Button--primary" type="submit"><span class="ms-Button-label">Save</span></button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

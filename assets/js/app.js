@@ -22,7 +22,7 @@ var DreamSparkSSO = {
 					return true;
 				}*/
 			}, {
-				"appHomeUrl": "https://dreamspark-sso.azurewebsites.net",
+				"appHomeUrl": "https://dreamspark.edulog.in",
 				"onSignIn": function() {
 					console.log("onSignIn");
 				},

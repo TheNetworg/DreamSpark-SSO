@@ -1,5 +1,7 @@
 <?php
-if(PHP_SAPI !== 'cli') die('Server side only.');
+//if(PHP_SAPI !== 'cli') die('Server side only.');
+
+ini_set('display_errors', 1);
 
 require_once '../vendor/autoload.php';
 require_once "includes/API.php";
