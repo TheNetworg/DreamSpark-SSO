@@ -1,6 +1,6 @@
 <?php
 use WindowsAzure\Common\ServicesBuilder;
-use WindowsAzure\Common\ServiceException;
+use MicrosoftAzure\Storage\Common\ServiceException;
 use MicrosoftAzure\Storage\Table\Models\Entity;
 use MicrosoftAzure\Storage\Table\Models\EdmType;
 
