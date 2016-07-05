@@ -34,8 +34,8 @@ $js = $factory->createAsset([
 $css = $factory->createAsset([
 	'https://controls.office.com/appChrome/1.0/Office.Controls.AppChrome.min.css',
 	'https://controls.office.com/people/1.0/Office.Controls.People.min.css',
-	'https://appsforoffice.microsoft.com/fabric/1.1.0/fabric.min.css',
-	'https://appsforoffice.microsoft.com/fabric/1.1.0/fabric.components.min.css',
+	'https://raw.githubusercontent.com/OfficeDev/Office-UI-Fabric/release/1.1.0/dist/css/fabric.min.css',
+	'https://raw.githubusercontent.com/OfficeDev/Office-UI-Fabric/release/1.1.0/dist/css/fabric.components.min.css',
 	'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css',
 	'@base_styles'
 ], [], ["output" => "app.css"]);
@@ -53,7 +53,7 @@ $cache["css"] = $css->getTargetPath();
 file_put_contents("assets/cache/cache.json", json_encode($cache));
 
 foreach(glob("assets/cache/*") as $file) {
-	if(!in_array(basename($file), [$cache["js"], $cache["css"], "cache.json"])) {
+	if(!in_array(basename($file), [$cache["js"], $cache["css"], "cache.json", 'twig'])) {
 		unlink($file);
 	}
 }
