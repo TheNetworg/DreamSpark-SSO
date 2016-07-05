@@ -5,7 +5,6 @@ $app->error(function($e) use ($app) {
 	if(gettype($e) == "object" && get_class($e) == "ErrorException") {
 		$app->response()->status(500);
 		\Slim\ApplicationInsights::exception($e);
-		baseHTML::header();
 		?>
 		<main class="Container">
 			<div class="Content">
@@ -13,22 +12,16 @@ $app->error(function($e) use ($app) {
 			</div>
 		</main>
 		<?php
-		baseHTML::footer();
+		
+		if(method_exists("\Slim\ApplicationInsights", "exception")) {
+			\Slim\ApplicationInsights::exception($e);
+		}
 	}
 	else {
 		$app->response()->status(400);
-		baseHTML::header();
-		?>
-		<main class="Container">
-			<div class="Content">
-				<b>Error:</b> <?=$e?>
-			</div>
-		</main>
-		<?php
-		baseHTML::footer();
-	}
-	
-	if(method_exists("\Slim\ApplicationInsights", "exception")) {
-		\Slim\ApplicationInsights::exception($e);
+		if(gettype($e) == "object") $e = $e->getMessage();
+		$app->render('error.twig', [
+			'message' => $e
+		]);
 	}
 });
