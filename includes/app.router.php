@@ -40,7 +40,7 @@ $app->group("/settings", ['Auth', 'Authenticate'], ['API', "authorizeOrganizatio
 });
 $app->group("/ajax", ['Auth', 'Authenticate'], ['API', "authorizeOrganization"], ['API', "authorizeAdministrator"], 'JSON', function() use ($app) {
 	$app->get('/groups', function() use($app) {
-		include 'controllers/ajax.groups.php';
+		include 'controllers/ajax/groups.php';
 	});
 });
 $app->get("/SSOPassThrough", ['Auth', 'Authenticate'], ['API', "authorizeOrganization"], ['API', "authorizeResource"], function() use ($app) {
