@@ -56,6 +56,9 @@ $app->get("/external", function() use ($app) {
 $app->get("/logout", ['Auth', 'Authenticate'], function() use ($app) {
 	include 'controllers/logout.php';
 });
+$app->get("/loggedout", function() use ($app) {
+	include 'controllers/loggedout.php';
+});
 $app->get("/install", ['Auth', 'Authenticate'], ['API', 'authorizeAdministrator'], function() use ($app) {
 	include 'controllers/install.php';
 });

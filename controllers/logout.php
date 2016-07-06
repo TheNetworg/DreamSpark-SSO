@@ -9,6 +9,7 @@ $redirectUri = isset($organization->logoutUri) ? $organization->logoutUri : "htt
 
 session_destroy();
 
-$logoutUrl = $app->OAuth2->provider->getLogoutUrl($redirectUri); // ."&id_token_hint=".$app->OAuth2->token->getValues()["id_token"];
+$redirectUri = $app->request->getUrl()."/loggedout?post_logout_redirect_uri=".rawurlencode($redirectUri);
+$logoutUrl = $app->OAuth2->provider->getLogoutUrl($redirectUri);
 
 $app->redirect($logoutUrl);
