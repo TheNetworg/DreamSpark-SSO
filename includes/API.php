@@ -211,7 +211,7 @@ class API {
 		$globalAdministrators = $app->OAuth2->provider->get($tenant."/directoryRoles/".$companyAdministratorId."/members", $app->OAuth2->token);
 		$adminsToAssign = [];
 		foreach($globalAdministrators as $user) {
-			if($user['objectType'] == "User")	$adminsToAssign[] = $user['objectId'];
+			if($user['objectType'] == "User") $adminsToAssign[] = $user['objectId'];
 		}
 		
 		$usersToAssign = [];
@@ -248,30 +248,42 @@ class API {
 		
 		foreach($adminsToAssign as $user) {
 			echo "assigning admin ".$user." to application\n";
-			$assignment = [
+			$assignment = json_encode([
 				"resourceId" => $servicePrincipal['objectId'],
 				"principalId" => $user,
 				"id" => $NULL_KEY
-			];
-			$app->OAuth2->provider->post($tenant."/users/".$user."/appRoleAssignments", $assignment, $app->OAuth2->token);
+			]);
+			try {
+				$app->OAuth2->provider->post($tenant."/users/".$user."/appRoleAssignments", $assignment, $app->OAuth2->token);
+			} catch(\Exception $e) {
+				echo "--FAIL-- ".$e->getMessage()."\n";
+			}
 		}
 		foreach($usersToAssign as $user) {
 			echo "assigning user ".$user." to application\n";
-			$assignment = [
+			$assignment = json_encode([
 				"resourceId" => $servicePrincipal['objectId'],
 				"principalId" => $user,
 				"id" => $NULL_KEY
-			];
-			$app->OAuth2->provider->post($tenant."/users/".$user."/appRoleAssignments", $assignment, $app->OAuth2->token);
+			]);
+			try {
+				$app->OAuth2->provider->post($tenant."/users/".$user."/appRoleAssignments", $assignment, $app->OAuth2->token);
+			} catch(\Exception $e) {
+				echo "--FAIL-- ".$e->getMessage()."\n";
+			}
 		}
 		foreach($groupsToAssign as $group) {
 			echo "assigning group ".$group." to application\n";
-			$assignment = [
+			$assignment = json_encode([
 				"resourceId" => $servicePrincipal['objectId'],
 				"principalId" => $group,
 				"id" => $NULL_KEY
-			];
-			$app->OAuth2->provider->post($tenant."/groups/".$group."/appRoleAssignments", $assignment, $app->OAuth2->token);
+			]);
+			try {
+				$app->OAuth2->provider->post($tenant."/groups/".$group."/appRoleAssignments", $assignment, $app->OAuth2->token);
+			} catch(\Exception $e) {
+				echo "--FAIL-- ".$e->getMessage()."\n";
+			}
 		}
 		foreach($assignments as $assignment) {
 			if($assignment['principalType'] == 'Group') {
