@@ -25,7 +25,7 @@ foreach($entities as $entity) {
 	
 	$accessGroups = json_decode($entity->getPropertyValue("accessGroups"));
     $everyone = $entity->getPropertyValue("access") == "everyone" ? true : false;
-	$groups = $accessGroups->students + $accessGroups->faculty + $accessGroups->staff;
+	$groups = array_merge($accessGroups->students, $accessGroups->faculty, $accessGroups->staff);
 	
 	try {
 		API::assignToApplication($tenantDomain, $everyone, $groups);
