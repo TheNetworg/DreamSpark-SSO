@@ -21,14 +21,18 @@ $app->OAuth2->provider = new TheNetworg\OAuth2\Client\Provider\Azure([
 foreach($entities as $entity) {
 	$tenantDomain = $entity->getPartitionKey();
 	$app->OAuth2->provider->tenant = $tenantDomain;
-	$app->OAuth2->token = $app->OAuth2->provider->getAccessToken('client_credentials', ['resource' => "https://graph.windows.net/"]);
-	
-	$accessGroups = json_decode($entity->getPropertyValue("accessGroups"));
-    $everyone = $entity->getPropertyValue("access") == "everyone" ? true : false;
-	$groups = array_merge($accessGroups->students, $accessGroups->faculty, $accessGroups->staff);
-	
 	try {
-		API::assignToApplication($tenantDomain, $everyone, $groups);
+		$app->OAuth2->token = $app->OAuth2->provider->getAccessToken('client_credentials', ['resource' => "https://graph.windows.net/"]);
+
+		$accessGroups = json_decode($entity->getPropertyValue("accessGroups"));
+		$everyone = $entity->getPropertyValue("access") == "everyone" ? true : false;
+		$groups = array_merge($accessGroups->students, $accessGroups->faculty, $accessGroups->staff);
+
+		try {
+			API::assignToApplication($tenantDomain, $everyone, $groups);
+		} catch(\Exception $e) {
+			echo "--FAIL-- ".$e->getMessage()."\n\n";
+		}
 	} catch(\Exception $e) {
 		echo "--FAIL-- ".$e->getMessage()."\n\n";
 	}
